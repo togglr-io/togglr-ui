@@ -1,0 +1,95 @@
+// @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./variables.scss";
+
+html,
+body,
+main {
+  height: 100%;
+  width: 100%;
+  // font-family: "Oswald", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  color: $primary-text;
+  background-color: $background;
+}
+
+fieldset {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+input[type="text"] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $background;
+  outline: none;
+  width: 100%;
+  padding: 0.2rem;
+  background-color: $foreground;
+}
+
+input:focus {
+  box-shadow: 0 0 4px $light-highlight;
+}
+
+input.dark {
+  color: $foreground;
+  background-color: $primary;
+  border-color: $highlight;
+}
+
+input.dark:focus {
+  box-shadow: 0 0 4px $highlight;
+}
+
+button {
+  background-color: $primary;
+  color: $foreground;
+  padding: 0.2rem 0.5rem;
+  font-weight: 500;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: $primary;
+}
+
+button:hover {
+  background-color: $highlight;
+  border-color: $highlight;
+}
+
+button.secondary {
+  background-color: $secondary;
+  border-color: $background;
+  color: $primary-text;
+}
+
+button.secondary:hover {
+  background-color: $background;
+}
+
+.container {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
