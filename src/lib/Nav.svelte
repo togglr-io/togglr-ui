@@ -1,3 +1,7 @@
+<script lang="ts">
+  import { link } from "svelte-routing";
+</script>
+
 <nav>
   <div class="banner">Toggle</div>
   <div class="gap" />
@@ -5,10 +9,10 @@
     <input type="text" class="dark" placeholder="Search..." />
     <ul>
       <li>
-        <a href="/">Toggles</a>
+        <a href="/" use:link>Toggles</a>
       </li>
       <li>
-        <a href="/">Profile</a>
+        <a href="profile" use:link>Profile</a>
       </li>
     </ul>
   </div>
