@@ -3,7 +3,7 @@
 </script>
 
 <nav>
-  <div class="banner">Toggle</div>
+  <div class="banner">Togglr</div>
   <div class="gap" />
   <div class="controls">
     <input type="text" class="dark" placeholder="Search..." />
