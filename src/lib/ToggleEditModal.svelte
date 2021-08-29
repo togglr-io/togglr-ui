@@ -12,7 +12,7 @@
 </script>
 
 <Modal {heading} {show} {onClose}>
-  <ToggleForm {toggle} {onSubmit} />
+  <ToggleForm {toggle} {onSubmit} onCancel={onClose} />
 </Modal>
 
 <style lang="scss">

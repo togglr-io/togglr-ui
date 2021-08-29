@@ -16,6 +16,13 @@ export interface Toggle {
   updatedAt: Dayjs;
 }
 
+export interface SaveToggleReq {
+  id?: string;
+  key?: string;
+  description?: string;
+  active?: boolean;
+}
+
 export function newToggle(): Toggle {
   return {
     id: "",

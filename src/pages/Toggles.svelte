@@ -1,16 +1,14 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { navigate } from "svelte-routing";
 
   import type { Toggle } from "../toggle";
+  import { newToggle } from "../toggle";
 
   import { getToggleApi } from "../api";
   import { toggleStore } from "../stores";
-  import ToggleEditModal from "../lib/ToggleEditModal.svelte";
-  import Card from "../lib/Card.svelte";
+  import ToggleList from "../lib/ToggleList.svelte";
 
   let toggles: Toggle[] = [];
-  let showEditModal = false;
 
   const api = getToggleApi({ baseUrl: "http://localhost:9001" });
   const unsubscribe = toggleStore.subscribe((newToggles: Toggle[]) => {
@@ -23,47 +21,37 @@
 
   onDestroy(unsubscribe);
 
-  function openModal() {
-    showEditModal = true;
-  }
-
-  function closeModal() {
-    showEditModal = true;
-  }
-
-  async function handleSubmit(toggle: Toggle) {
-    await api.createToggle(toggle);
-    await fetchToggles();
+  function addToggle() {
+    toggles.unshift(newToggle());
+    toggles = toggles;
   }
 
   async function fetchToggles() {
     const fetched = await api.listToggles({});
     toggleStore.update(() => fetched);
   }
+
+  $: canCreate = toggles.every((toggle) => toggle.id);
 </script>
 
 <div>
-  <Card>
-    <div class="container">
-      {#if toggles.length === 0}
-        <h2>Loading toggles...</h2>
-      {:else}
-        <button on:click={openModal}>Create Toggle</button>
-        {#each toggles as toggle}
-          <ul>
-            <li>
-              <a href="" on:click={() => navigate(`toggle/${toggle.id}`)}
-                >{toggle.key}</a
-              >
-            </li>
-          </ul>
-        {/each}
-      {/if}
+  <div class="container">
+    <div class="title">
+      <h2>Toggles</h2>
+      <button on:click={addToggle} disabled={!canCreate}>Create Toggle</button>
     </div>
-  </Card>
-  <ToggleEditModal
-    onSubmit={handleSubmit}
-    onClose={closeModal}
-    show={showEditModal}
-  />
+    {#if toggles.length === 0}
+      <h2>Loading toggles...</h2>
+    {:else}
+      <ToggleList {toggles} />
+    {/if}
+  </div>
 </div>
+
+<style lang="scss">
+  .title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 1rem 0;
+  }
+</style>

@@ -1,5 +1,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "./variables.scss";
 
 html,
@@ -13,13 +14,18 @@ main {
   background-color: $background;
 }
 
+// need to capture Router and set height to 100%
+#app {
+  height: 100%;
+}
+
 fieldset {
   border: none;
 }
 
 a {
   text-decoration: none;
-  color: $primary;
+  color: $primary-text;
 }
 
 button,
@@ -33,11 +39,11 @@ textarea {
 input[type="text"] {
   border-style: solid;
   border-width: 2px;
-  border-color: $background;
+  border-color: $highlight;
+  color: $primary-text;
   outline: none;
-  width: 100%;
   padding: 0.2rem;
-  background-color: $foreground;
+  background-color: $background;
 }
 
 input:focus {
@@ -45,8 +51,7 @@ input:focus {
 }
 
 input.dark {
-  color: $foreground;
-  background-color: $primary;
+  background-color: $foreground;
   border-color: $highlight;
 }
 
@@ -54,9 +59,19 @@ input.dark:focus {
   box-shadow: 0 0 4px $highlight;
 }
 
+textarea {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $highlight;
+  color: $primary-text;
+  padding: 0.2rem;
+  background-color: $background;
+  outline: none;
+}
+
 button {
   background-color: $primary;
-  color: $foreground;
+  color: $primary-text;
   padding: 0.2rem 0.5rem;
   font-weight: 500;
   border-radius: 2px;
@@ -79,6 +94,15 @@ button.secondary:hover {
   background-color: $background;
 }
 
+button.neutral {
+  background-color: $background;
+  border-color: $highlight;
+}
+
+button.neutral:hover {
+  background-color: $highlight;
+}
+
 .container {
   margin: 1rem;
   padding: 1rem;
@@ -92,4 +116,14 @@ h1 {
 h2 {
   font-weight: 500;
   font-size: 1.5rem;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clickable {
+  cursor: pointer;
 }

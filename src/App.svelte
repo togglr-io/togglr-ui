@@ -10,14 +10,27 @@
 </script>
 
 <Router {url}>
-  <Nav />
   <main>
-    <Route path="/" component={Toggles} />
-    <Route path="toggle/:id" component={Toggle} />
-    <Route path="profile" component={Profile} />
+    <Nav />
+    <div class="page">
+      <Route path="/" component={Toggles} />
+      <Route path="toggle/:id" component={Toggle} />
+      <Route path="profile" component={Profile} />
+    </div>
   </main>
 </Router>
 
 <style global lang="scss">
   @import "../scss/main.scss";
+
+  main {
+    display: flex;
+  }
+
+  .page {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+  }
 </style>

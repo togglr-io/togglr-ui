@@ -3,6 +3,7 @@
 
   export let toggle: Toggle | undefined = undefined;
   export let onSubmit: (toggle: Toggle) => Promise<void>;
+  export let onCancel: () => void;
   let toggleData = {
     key: "",
     description: "",

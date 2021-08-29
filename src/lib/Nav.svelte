@@ -1,21 +1,36 @@
 <script lang="ts">
   import { link } from "svelte-routing";
+  import Icon from "./Icon.svelte";
+  import UIToggle from "./UIToggle.svelte";
 </script>
 
 <nav>
-  <div class="banner">Toggle</div>
-  <div class="gap" />
-  <div class="controls">
-    <input type="text" class="dark" placeholder="Search..." />
-    <ul>
-      <li>
-        <a href="/" use:link>Toggles</a>
-      </li>
-      <li>
-        <a href="profile" use:link>Profile</a>
-      </li>
-    </ul>
-  </div>
+  <div class="banner"><UIToggle checked={true} />Togglr</div>
+  <ul>
+    <li>
+      <a href="/" use:link>
+        <Icon name="toggle_on" />&nbsp;Toggles
+      </a>
+    </li>
+    <li>
+      <a href="account" use:link> <Icon name="business" />&nbsp;Account</a>
+    </li>
+    <li>
+      <a href="users" use:link>
+        <Icon name="manage_accounts" />&nbsp;Users
+      </a>
+    </li>
+    <li>
+      <a href="profile" use:link>
+        <Icon name="account_circle" />&nbsp;Profile
+      </a>
+    </li>
+    <li>
+      <a href="settings" use:link>
+        <Icon name="settings" />&nbsp;Settings
+      </a>
+    </li>
+  </ul>
 </nav>
 
 <style lang="scss">
@@ -23,18 +38,19 @@
 
   nav {
     display: flex;
-    background-color: $primary;
-    color: $foreground;
-    justify-content: space-between;
+    flex-direction: column;
+    background-color: $foreground;
+    color: $primary-text;
     padding: 0 1rem;
+    height: 100%;
   }
 
   ul {
     display: flex;
+    flex-direction: column;
 
     li {
       height: 100%;
-      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -42,9 +58,9 @@
 
     a {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
-      color: $foreground;
+      align-items: center;
       padding: 1rem;
       width: 100%;
       height: 100%;
@@ -56,25 +72,8 @@
     }
   }
 
-  input {
-    margin: 1rem;
-    flex: 2;
-  }
-
   .banner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     font-weight: 600;
     font-size: 24pt;
-  }
-
-  .gap {
-    flex: 1;
-  }
-
-  .controls {
-    flex: 1;
-    display: flex;
   }
 </style>

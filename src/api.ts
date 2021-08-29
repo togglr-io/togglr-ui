@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type { Toggle, ListTogglesReq, ID } from "./toggle";
+import type { Toggle, SaveToggleReq, ListTogglesReq, ID } from "./toggle";
 
 enum Method {
   GET = "GET",
@@ -8,7 +8,7 @@ enum Method {
 }
 
 export interface ToggleApi {
-  createToggle(toggle: Toggle): Promise<ID>;
+  saveToggle(toggle: SaveToggleReq): Promise<ID>;
   fetchToggle(id: string): Promise<Toggle>;
   listToggles(req: ListTogglesReq): Promise<Toggle[]>;
   deleteToggle(id: string): Promise<void>;
@@ -41,7 +41,7 @@ async function makeRequest<T>(
 
 export function getToggleApi(cfg: ApiConfig): ToggleApi {
   return {
-    createToggle: async (toggle: Toggle): Promise<ID> => {
+    saveToggle: async (toggle: SaveToggleReq): Promise<ID> => {
       const url = `${cfg.baseUrl}/toggle`;
       return makeRequest(Method.POST, url, { body: JSON.stringify(toggle) });
     },
