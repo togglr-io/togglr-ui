@@ -1,11 +1,11 @@
 <script lang="ts">
   import { link } from "svelte-routing";
-  import Icon from "./Icon.svelte";
-  import UIToggle from "./UIToggle.svelte";
+  import Icon from "src/lib/Icon.svelte";
+  import ToggleCtl from "src/ui/Toggle.svelte";
 </script>
 
 <nav>
-  <div class="banner"><UIToggle checked={true} />Togglr</div>
+  <div class="banner"><ToggleCtl checked={true} />Togglr</div>
   <ul>
     <li>
       <a href="/" use:link>

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Toggle from "./Toggle.svelte";
-  import type { Toggle as ToggleType } from "../toggle";
+  import Toggle from "src/lib/Toggle.svelte";
+  import type { Toggle as ToggleType } from "src/toggle";
   export let toggles: ToggleType[] = [];
 
   let activeId = "";

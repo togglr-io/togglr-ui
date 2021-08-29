@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Toggle, SaveToggleReq } from "../toggle";
-  import { getToggleApi } from "../api";
-  import { toggleStore } from "../stores";
-  import { relativeTime } from "../dates";
+  import type { Toggle, SaveToggleReq } from "src/toggle";
+  import { getToggleApi } from "src/api";
+  import { toggleStore } from "src/stores";
+  import { relativeTime } from "src/dates";
 
-  import Icon from "./Icon.svelte";
-  import UIToggle from "./UIToggle.svelte";
+  import Icon from "src/lib/Icon.svelte";
+  import ToggleCtl from "src/ui/Toggle.svelte";
 
   export let toggle: Toggle;
   export let active: boolean;
@@ -49,7 +49,7 @@
       {relativeTime(toggle.updatedAt)}
     </div>
     <div>
-      <UIToggle onClick={toggleActive} checked={toggle.active} />
+      <ToggleCtl onClick={toggleActive} checked={toggle.active} />
     </div>
     <div>
       <Icon onClick={onEdit} name="edit" />
@@ -66,7 +66,7 @@
         </div>
         <div>
           <label for="active">ACTIVE</label>
-          <UIToggle bind:checked={toggleState.active} />
+          <ToggleCtl bind:checked={toggleState.active} />
         </div>
         <div>
           <Icon name="delete" />

@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Router, Route } from "svelte-routing";
 
-  import Nav from "./lib/Nav.svelte";
-  import Toggles from "./pages/Toggles.svelte";
-  import Toggle from "./pages/Toggle.svelte";
-  import Profile from "./pages/Profile.svelte";
+  import Nav from "src/lib/Nav.svelte";
+  import Toggles from "src/pages/Toggles.svelte";
+  import Toggle from "src/pages/Toggle.svelte";
+  import Profile from "src/pages/Profile.svelte";
 
   export let url = "";
 </script>

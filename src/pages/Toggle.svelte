@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Toggle } from "../toggle";
-  import { getToggleApi } from "../api";
+
+  import type { Toggle } from "src/toggle";
+  import { getToggleApi } from "src/api";
   export let id: string = "";
 
   let toggle: Toggle | undefined;

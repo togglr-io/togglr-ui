@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import type { Toggle, SaveToggleReq, ListTogglesReq, ID } from "./toggle";
+import type { Toggle, SaveToggleReq, ListTogglesReq, ID } from "src/toggle";
 
 enum Method {
   GET = "GET",
