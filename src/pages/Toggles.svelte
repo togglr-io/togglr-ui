@@ -5,7 +5,7 @@
   import { newToggle } from "../toggle";
 
   import { getToggleApi } from "../api";
-  import { toggleStore } from "../stores";
+  import { toggleStore, keyStore } from "../stores";
   import ToggleList from "../lib/ToggleList.svelte";
 
   let toggles: Toggle[] = [];
@@ -17,6 +17,7 @@
 
   onMount(async () => {
     await fetchToggles();
+    keyStore.update(() => ["userId", "userType", "hasFlag", "accountAge"]);
   });
 
   onDestroy(unsubscribe);

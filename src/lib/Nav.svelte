@@ -1,6 +1,6 @@
 <script lang="ts">
   import { link } from "svelte-routing";
-  import Icon from "src/lib/Icon.svelte";
+  import Icon from "src/ui/Icon.svelte";
   import ToggleCtl from "src/ui/Toggle.svelte";
 </script>
 

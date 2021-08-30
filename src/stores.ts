@@ -6,3 +6,6 @@ export const toggleStore = writable(defaultToggles);
 
 const defaultSearch: ListTogglesReq = {};
 export const currentSearch = writable(defaultSearch);
+
+const defaultKeys: string[] = [];
+export const keyStore = writable(defaultKeys);

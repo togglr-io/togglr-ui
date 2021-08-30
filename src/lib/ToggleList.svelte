@@ -7,7 +7,6 @@
   // maybe a "hack"? Makes isActive re-evalutate for each Toggle
   // when the activeId changes
   $: isActive = (toggle: ToggleType) => {
-    console.log(`Is Active: ${toggle.id}`);
     return toggle.id === activeId;
   };
 

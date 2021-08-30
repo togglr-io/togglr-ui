@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
+import type { Rule } from "src/rule";
 
 export interface ID {
   id: string;
@@ -12,6 +13,7 @@ export interface Toggle {
   key: string;
   description: string;
   active: boolean;
+  rules: Rule[];
   createdAt: Dayjs;
   updatedAt: Dayjs;
 }
@@ -30,6 +32,7 @@ export function newToggle(): Toggle {
     key: "",
     description: "",
     active: true,
+    rules: [],
     createdAt: dayjs(),
     updatedAt: dayjs(),
   };

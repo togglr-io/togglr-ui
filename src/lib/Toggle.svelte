@@ -4,27 +4,23 @@
   import { toggleStore } from "src/stores";
   import { relativeTime } from "src/dates";
 
-  import Icon from "src/lib/Icon.svelte";
+  import Icon from "src/ui/Icon.svelte";
   import ToggleCtl from "src/ui/Toggle.svelte";
+  import ToggleForm from "src/lib/ToggleForm.svelte";
 
   export let toggle: Toggle;
   export let active: boolean;
   export let onEdit: () => void;
   export let onDelete: () => void = undefined;
-  export let onCancel = () => undefined;
+  export let onCancel: () => undefined;
 
   const api = getToggleApi({ baseUrl: "http://localhost:9001" });
 
-  // internal state for modifying toggle
-  let toggleState: Toggle = {
-    ...toggle,
-    accountId: "8dc8c3cd-7c2a-4a4c-bc1e-7ba042096029",
-  };
-
-  async function saveToggle() {
-    await api.saveToggle(toggleState as SaveToggleReq);
+  async function saveToggle(toggle: SaveToggleReq) {
+    await api.saveToggle(toggle);
     const fetched = await api.listToggles({});
     toggleStore.update(() => fetched);
+    onCancel();
   }
 
   async function toggleActive() {
@@ -58,38 +54,7 @@
       <Icon onClick={onDelete} name="delete" />
     </div>
   {:else}
-    <form on:submit|preventDefault={saveToggle}>
-      <fieldset>
-        <div>
-          <label for="key">KEY</label>
-          <input id="key" type="text" bind:value={toggleState.key} />
-        </div>
-        <div>
-          <label for="active">ACTIVE</label>
-          <ToggleCtl bind:checked={toggleState.active} />
-        </div>
-        <div>
-          <Icon name="delete" />
-        </div>
-      </fieldset>
-      <fieldset>
-        <div>
-          <label for="description">DESCRIPTION</label>
-          <input
-            id="description"
-            type="text"
-            bind:value={toggleState.description}
-          />
-        </div>
-        <div />
-        <div />
-      </fieldset>
-      <fieldset>
-        <button type="submit">Save</button>
-        <button class="neutral" type="button" on:click={onCancel}>Cancel</button
-        >
-      </fieldset>
-    </form>
+    <ToggleForm onSubmit={saveToggle} {onCancel} {toggle} />
   {/if}
 </article>
 
@@ -100,31 +65,6 @@
       flex: 1;
       text-align: center;
     }
-  }
-
-  form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-  }
-
-  fieldset {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-      flex: 1;
-      padding-right: 1rem;
-    }
-  }
-
-  input {
-    width: 100%;
-  }
-
-  label {
-    display: block;
-    font-size: 0.75rem;
   }
 
   article {
