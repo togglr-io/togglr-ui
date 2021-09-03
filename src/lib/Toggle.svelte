@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Toggle, SaveToggleReq } from "src/toggle";
   import { getToggleApi } from "src/api";
-  import { toggleStore } from "src/stores";
+  import { refreshToggleStore, refreshKeyStore } from "src/stores";
   import { relativeTime } from "src/dates";
 
   import Icon from "src/ui/Icon.svelte";
@@ -12,15 +12,16 @@
   export let active: boolean;
   export let onEdit: () => void;
   export let onDelete: () => void = undefined;
-  export let onCancel: () => undefined;
+  export let onCancel: () => void = undefined;
 
   const api = getToggleApi({ baseUrl: "http://localhost:9001" });
 
   async function saveToggle(toggle: SaveToggleReq) {
+    console.log("saving toggle");
     await api.saveToggle(toggle);
-    const fetched = await api.listToggles({});
-    toggleStore.update(() => fetched);
-    onCancel();
+    refreshKeyStore();
+    refreshToggleStore();
+    onCancel && onCancel();
   }
 
   async function toggleActive() {
@@ -35,22 +36,22 @@
 
 <article>
   {#if !active}
-    <div>
+    <div class="whole">
       {toggle.key}
     </div>
-    <div class="truncate">
+    <div class="truncate whole">
       {toggle.description}
     </div>
-    <div>
+    <div class="half">
       {relativeTime(toggle.updatedAt)}
     </div>
-    <div>
+    <div class="quarter">
       <ToggleCtl onClick={toggleActive} checked={toggle.active} />
     </div>
-    <div>
+    <div class="quarter">
       <Icon onClick={onEdit} name="edit" />
     </div>
-    <div>
+    <div class="quarter">
       <Icon onClick={onDelete} name="delete" />
     </div>
   {:else}
@@ -62,7 +63,6 @@
   article {
     display: flex;
     div {
-      flex: 1;
       text-align: center;
     }
   }

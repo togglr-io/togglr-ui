@@ -11,7 +11,6 @@
   };
 
   function setActive(id: string) {
-    console.log(`Setting active: ${id}`);
     return () => {
       activeId = id;
     };
@@ -24,12 +23,12 @@
 
 <ul>
   <header>
-    <span>KEY</span>
-    <span>DESCRIPTION</span>
-    <span>LAST EVALUATED</span>
-    <span>ACTIVE</span>
-    <span>EDIT</span>
-    <span>DELETE</span>
+    <span class="whole">KEY</span>
+    <span class="whole">DESCRIPTION</span>
+    <span class="half">LAST EVALUATED</span>
+    <span class="quarter">ACTIVE</span>
+    <span class="quarter">EDIT</span>
+    <span class="quarter">DELETE</span>
   </header>
   {#each toggles as toggle (toggle.id)}
     <li>
@@ -55,7 +54,6 @@
   header {
     display: flex;
     span {
-      flex: 1;
       text-align: center;
     }
   }

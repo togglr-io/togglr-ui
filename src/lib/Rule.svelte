@@ -9,9 +9,11 @@
     getLogicOps,
   } from "src/rule";
   import Combobox from "src/ui/Combobox.svelte";
+  import Icon from "src/ui/Icon.svelte";
   import { keyStore } from "src/stores";
 
   export let rule: Rule;
+  export let onDelete: () => void;
 
   let keys: ComboOption[] = [];
   const unsubscribe = keyStore.subscribe((newKeys: string[]) => {
@@ -31,38 +33,27 @@
 </script>
 
 <div>
-  <div>
-    <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
-    <Combobox
-      name="Key"
-      bind:value={rule.expression.left.value}
-      options={keys}
-    />
-  </div>
-  <div>
-    <Combobox
-      strict
-      onSelect={handleOpSelect}
-      options={ops}
-      name="Op"
-      value={rule.expression.op}
-    />
-  </div>
-  <div>
-    <Combobox
-      name="Value"
-      bind:value={rule.expression.right.value}
-      options={[]}
-    />
-  </div>
+  <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
+  <Combobox name="Key" bind:value={rule.expression.left.value} options={keys} />
+  <Combobox
+    strict
+    onSelect={handleOpSelect}
+    options={ops}
+    name="Op"
+    value={rule.expression.op}
+  />
+  <Combobox
+    name="Value"
+    bind:value={rule.expression.right.value}
+    options={[]}
+  />
+  <Icon name="delete" onClick={onDelete} />
 </div>
 
 <style lang="scss">
   div {
     display: flex;
+    flex: 1;
     justify-content: space-between;
-    div {
-      flex: 1;
-    }
   }
 </style>

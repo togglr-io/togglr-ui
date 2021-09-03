@@ -16,33 +16,21 @@
   };
 
   function handleSubmit(_: Event) {
+    console.log("handling submit");
     onSubmit(toggleState);
   }
 
   function addRule() {
-    console.log("Woo?");
     toggleState.rules.push(newRule());
     toggleState.rules = toggleState.rules;
   }
 
-  const keys: ComboOption[] = [
-    {
-      id: "1",
-      value: "userId",
-    },
-    {
-      id: "2",
-      value: "language",
-    },
-    {
-      id: "3",
-      value: "userType",
-    },
-    {
-      id: "4",
-      value: "demographic",
-    },
-  ];
+  function deleteRule(idx: number) {
+    return () => {
+      toggleState.rules.splice(idx, 1);
+      toggleState = toggleState;
+    };
+  }
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
@@ -70,9 +58,9 @@
   <fieldset>
     <button type="button" on:click={addRule}>Add Rule</button>
   </fieldset>
-  {#each toggleState.rules as rule}
+  {#each toggleState.rules as rule, idx}
     <fieldset>
-      <Rule {rule} />
+      <Rule {rule} onDelete={deleteRule(idx)} />
     </fieldset>
   {/each}
   <fieldset>
@@ -92,11 +80,7 @@
   fieldset {
     display: flex;
     justify-content: space-between;
-
-    div {
-      flex: 1;
-      padding-right: 1rem;
-    }
+    margin: 0.5rem 0;
   }
 
   input {

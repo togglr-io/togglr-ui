@@ -17,7 +17,7 @@
 
   onMount(async () => {
     await fetchToggles();
-    keyStore.update(() => ["userId", "userType", "hasFlag", "accountAge"]);
+    await fetchKeys();
   });
 
   onDestroy(unsubscribe);
@@ -30,6 +30,11 @@
   async function fetchToggles() {
     const fetched = await api.listToggles({});
     toggleStore.update(() => fetched);
+  }
+
+  async function fetchKeys() {
+    const fetched = await api.fetchMetadata();
+    keyStore.update(() => fetched);
   }
 
   $: canCreate = toggles.every((toggle) => toggle.id);

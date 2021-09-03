@@ -2,14 +2,18 @@
 // $foreground: #3e2c41;
 $background: #202040;
 $foreground: #543864;
+// $background: #432c51;
+// $foreground: #535474;
 
 // $primary: #50cb93;
 // $secondary: #fe9898;
 $primary: #ff6363;
 $secondary: #ffbd69;
+// $primary: #54a4af;
+// $secondary: #ecbc55;
 
-$highlight: #5c527f;
-$light-highlight: #6e85b2;
+$highlight: lighten($foreground, 20%);
+$light-highlight: lighten($foreground, 40%);
 $shadow: rgba(0, 0, 0, 0.3);
 
 $primary-text: #dddddd;
