@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
-import type { Toggle, ListTogglesReq, ID } from "./toggle";
+import type { Toggle, SaveToggleReq, ListTogglesReq, ID } from "src/toggle";
+
+// TODO (etate): Remove this hardcoded account ID once user tokens exist
+const accountId = "8dc8c3cd-7c2a-4a4c-bc1e-7ba042096029";
 
 enum Method {
   GET = "GET",
@@ -8,10 +11,11 @@ enum Method {
 }
 
 export interface ToggleApi {
-  createToggle(toggle: Toggle): Promise<ID>;
+  saveToggle(toggle: SaveToggleReq): Promise<ID>;
   fetchToggle(id: string): Promise<Toggle>;
   listToggles(req: ListTogglesReq): Promise<Toggle[]>;
   deleteToggle(id: string): Promise<void>;
+  fetchMetadata(): Promise<string[]>;
 }
 
 export interface ApiConfig {
@@ -41,7 +45,7 @@ async function makeRequest<T>(
 
 export function getToggleApi(cfg: ApiConfig): ToggleApi {
   return {
-    createToggle: async (toggle: Toggle): Promise<ID> => {
+    saveToggle: async (toggle: SaveToggleReq): Promise<ID> => {
       const url = `${cfg.baseUrl}/toggle`;
       return makeRequest(Method.POST, url, { body: JSON.stringify(toggle) });
     },
@@ -71,6 +75,11 @@ export function getToggleApi(cfg: ApiConfig): ToggleApi {
     deleteToggle: async (id: string): Promise<void> => {
       const url = `${cfg.baseUrl}/toggle/${id}`;
       return makeRequest(Method.DELETE, url);
+    },
+
+    fetchMetadata: async (): Promise<string[]> => {
+      const url = `${cfg.baseUrl}/metadata/${accountId}`;
+      return makeRequest(Method.GET, url);
     },
   };
 }
