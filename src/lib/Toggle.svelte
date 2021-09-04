@@ -36,10 +36,10 @@
 
 <article>
   {#if !active}
-    <div class="whole">
+    <div class="full">
       {toggle.key}
     </div>
-    <div class="truncate whole">
+    <div class="truncate full">
       {toggle.description}
     </div>
     <div class="half">
@@ -62,13 +62,10 @@
 <style lang="scss">
   article {
     display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
     div {
       text-align: center;
     }
-  }
-
-  article {
-    display: flex;
-    justify-content: space-between;
   }
 </style>

@@ -33,15 +33,25 @@
 </script>
 
 <div>
-  <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
-  <Combobox name="Key" bind:value={rule.expression.left.value} options={keys} />
-  <Combobox
-    strict
-    onSelect={handleOpSelect}
-    options={ops}
-    name="Op"
-    value={rule.expression.op}
-  />
+  <div class="quarter">
+    <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
+  </div>
+  <div class="full">
+    <Combobox
+      name="Key"
+      bind:value={rule.expression.left.value}
+      options={keys}
+    />
+  </div>
+  <div class="quarter">
+    <Combobox
+      strict
+      onSelect={handleOpSelect}
+      options={ops}
+      name="Op"
+      value={rule.expression.op}
+    />
+  </div>
   <Combobox
     name="Value"
     bind:value={rule.expression.right.value}
@@ -53,7 +63,5 @@
 <style lang="scss">
   div {
     display: flex;
-    flex: 1;
-    justify-content: space-between;
   }
 </style>
