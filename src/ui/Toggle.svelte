@@ -3,12 +3,7 @@
   export let onClick = () => undefined;
 </script>
 
-<input
-  on:click={onClick}
-  type="checkbox"
-  class="toggle"
-  {checked}
-/>
+<input on:click={onClick} type="checkbox" class="toggle" bind:checked />
 
 <style lang="scss">
   @import "../../scss/variables.scss";

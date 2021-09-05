@@ -23,8 +23,8 @@
 
 <ul>
   <header>
-    <span class="whole">KEY</span>
-    <span class="whole">DESCRIPTION</span>
+    <span class="full">KEY</span>
+    <span class="full">DESCRIPTION</span>
     <span class="half">LAST EVALUATED</span>
     <span class="quarter">ACTIVE</span>
     <span class="quarter">EDIT</span>
@@ -48,7 +48,7 @@
   li {
     background-color: $foreground;
     margin-bottom: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   header {

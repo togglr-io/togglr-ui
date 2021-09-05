@@ -102,10 +102,6 @@
 <style lang="scss">
   @import "scss/variables.scss";
 
-  div {
-    width: 100%;
-  }
-
   .selected {
     background-color: $highlight;
   }
@@ -114,6 +110,7 @@
     position: absolute;
     background-color: $background;
   }
+
   li {
     padding: 0.5rem;
     cursor: pointer;

@@ -13,6 +13,8 @@ export interface Toggle {
   key: string;
   description: string;
   active: boolean;
+  usePercentage: boolean;
+  percentage: number;
   rules: Rule[];
   createdAt: Dayjs;
   updatedAt: Dayjs;
@@ -32,6 +34,8 @@ export function newToggle(): Toggle {
     key: "",
     description: "",
     active: true,
+    usePercentage: false,
+    percentage: 0.0,
     rules: [],
     createdAt: dayjs(),
     updatedAt: dayjs(),

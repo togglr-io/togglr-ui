@@ -32,28 +32,44 @@
   onDestroy(unsubscribe);
 </script>
 
-<div>
-  <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
-  <Combobox name="Key" bind:value={rule.expression.left.value} options={keys} />
-  <Combobox
-    strict
-    onSelect={handleOpSelect}
-    options={ops}
-    name="Op"
-    value={rule.expression.op}
-  />
-  <Combobox
-    name="Value"
-    bind:value={rule.expression.right.value}
-    options={[]}
-  />
+<div class="flex">
+  <div class="rule-op">
+    <Combobox name="Rule Op" options={logicOps} bind:value={rule.op} />
+  </div>
+  <div class="full">
+    <Combobox
+      name="Key"
+      bind:value={rule.expression.left.value}
+      options={keys}
+    />
+  </div>
+  <div class="rule-op">
+    <Combobox
+      strict
+      onSelect={handleOpSelect}
+      options={ops}
+      name="Op"
+      value={rule.expression.op}
+    />
+  </div>
+  <div class="full">
+    <Combobox
+      name="Value"
+      bind:value={rule.expression.right.value}
+      options={[]}
+    />
+  </div>
   <Icon name="delete" onClick={onDelete} />
 </div>
 
 <style lang="scss">
+  .rule-op {
+    max-width: 2rem;
+  }
+
   div {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
+    div {
+      margin-right: 1rem;
+    }
   }
 </style>
