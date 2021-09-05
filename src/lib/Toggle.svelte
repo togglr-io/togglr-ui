@@ -62,7 +62,6 @@
 <style lang="scss">
   article {
     display: flex;
-    padding: 0 1rem;
     justify-content: space-between;
     div {
       text-align: center;

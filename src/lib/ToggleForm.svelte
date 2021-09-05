@@ -69,11 +69,13 @@
     <div class="tenth" />
     <fieldset class="flex column full">
       <button type="button" on:click={addRule}>Add Rule</button>
-      {#each toggleState.rules as rule, idx}
-        <div>
-          <Rule {rule} onDelete={deleteRule(idx)} />
-        </div>
-      {/each}
+      <ul>
+        {#each toggleState.rules as rule, idx}
+          <li>
+            <Rule {rule} onDelete={deleteRule(idx)} />
+          </li>
+        {/each}
+      </ul>
     </fieldset>
   </div>
   <div class="flex row space-between full">
@@ -84,13 +86,15 @@
 
 <style lang="scss">
   @import "../../scss/variables.scss";
+  form {
+    padding: 0 1rem;
+  }
   fieldset {
     button {
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
-
     div {
-      margin: 0.5rem 0;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -101,5 +105,9 @@
   label {
     display: block;
     font-size: 0.75rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
   }
 </style>
