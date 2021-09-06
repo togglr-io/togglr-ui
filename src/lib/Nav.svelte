@@ -2,6 +2,13 @@
   import { link } from "svelte-routing";
   import Icon from "src/ui/Icon.svelte";
   import ToggleCtl from "src/ui/Toggle.svelte";
+  import { githubLogin } from "src/oauth";
+
+  const cfg = {
+    clientId: "cd1dc2c17ea73593dc8d",
+    redirectUri: "http://localhost:9001/oauth/github",
+    scope: "user:email",
+  };
 </script>
 
 <nav>
@@ -29,6 +36,9 @@
       <a href="settings" use:link>
         <Icon name="settings" />&nbsp;Settings
       </a>
+    </li>
+    <li>
+      <a href="/" on:click|preventDefault={() => githubLogin(cfg)}>Login</a>
     </li>
   </ul>
 </nav>

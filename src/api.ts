@@ -37,6 +37,7 @@ async function makeRequest<T>(
   const res = await fetch(url, {
     method,
     body: opts?.body,
+    credentials: "include",
   });
 
   const json = await res.json();
